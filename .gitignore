@@ -27,3 +27,11 @@
 *.exe
 *.out
 *.app
+
+# gcode stuff.
+*.gcov
+*.gcda
+*.gcno
+
+# bin
+TicTacToeBoardTest
