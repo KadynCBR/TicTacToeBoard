@@ -66,13 +66,61 @@ TEST(TicTacToeBoardTest, test_place_opponent_piece) {
   ASSERT_EQ(placed, X);
 }
 
-TEST(TicTacToeBoardTest, test_get_piece_outside) {}
-TEST(TicTacToeBoardTest, test_get_piece_blank) {}
-TEST(TicTacToeBoardTest, test_get_piece_piece_present) {}
-
-TEST(TicTacToeBoardTest, test_winner_true) {
+TEST(TicTacToeBoardTest, test_get_piece_outside) {
   TicTacToeBoard t = TicTacToeBoard();
-  ASSERT_TRUE(true);
+  Piece p = t.getPiece(-1, 0);
+  ASSERT_EQ(p, Invalid);
+}
+TEST(TicTacToeBoardTest, test_get_piece_blank) {
+  TicTacToeBoard t = TicTacToeBoard();
+  Piece p = t.getPiece(0, 0);
+  ASSERT_EQ(p, Invalid);
+}
+TEST(TicTacToeBoardTest, test_get_piece_piece_present) {
+  TicTacToeBoard t = TicTacToeBoard();
+  Piece placed = t.placePiece(1, 1);
+  Piece p = t.getPiece(1, 1);
+  ASSERT_EQ(p, X);
 }
 
-TEST(TicTacToeBoardTest, test_winner_false) {}
+TEST(TicTacToeBoardTest, test_winner_true_vertical) {
+  TicTacToeBoard t = TicTacToeBoard();
+  t.placePiece(0, 0);
+  t.placePiece(1, 0);
+  t.placePiece(2, 0);
+  Piece winner = t.getWinner();
+  ASSERT_EQ(winner, X);
+}
+
+TEST(TicTacToeBoardTest, test_winner_true_horizontal) {
+  TicTacToeBoard t = TicTacToeBoard();
+  t.placePiece(0, 0);
+  t.placePiece(1, 0);
+  t.placePiece(2, 0);
+  Piece winner = t.getWinner();
+  ASSERT_EQ(winner, X);
+}
+
+TEST(TicTacToeBoardTest, test_winner_true_diagonal_tl_br) {
+  TicTacToeBoard t = TicTacToeBoard();
+  t.placePiece(0, 0);
+  t.placePiece(1, 1);
+  t.placePiece(2, 2);
+  Piece winner = t.getWinner();
+  ASSERT_EQ(winner, X);
+}
+
+TEST(TicTacToeBoardTest, test_winner_true_diagonal_tr_bl) {
+  TicTacToeBoard t = TicTacToeBoard();
+  t.placePiece(0, 2);
+  t.placePiece(1, 1);
+  t.placePiece(2, 0);
+  Piece winner = t.getWinner();
+  ASSERT_EQ(winner, X);
+}
+
+TEST(TicTacToeBoardTest, test_winner_false) {
+  TicTacToeBoard t = TicTacToeBoard();
+  Piece winner = t.getWinner();
+  ASSERT_EQ(winner, false);
+}

@@ -15,7 +15,10 @@ TicTacToeBoard::TicTacToeBoard() {
  * Switches turn member variable to represent whether it's X's or O's turn
  * and returns whose turn it is
  **/
-Piece TicTacToeBoard::toggleTurn() { return turn == O ? X : O; }
+Piece TicTacToeBoard::toggleTurn() {
+  turn = turn == O ? X : O;
+  return turn;
+}
 
 /**
  * Places the piece of the current turn on the board, returns what
@@ -37,10 +40,28 @@ Piece TicTacToeBoard::placePiece(int row, int column) {
  * Returns what piece is at the provided coordinates, or Blank if there
  * are no pieces there, or Invalid if the coordinates are out of bounds
  **/
-Piece TicTacToeBoard::getPiece(int row, int column) { return Invalid; }
+Piece TicTacToeBoard::getPiece(int row, int column) {
+  if (row > 2 || row < 0 || column > 2 || column < 0) return Invalid;
+  return board[row][column];
+}
 
 /**
  * Returns which Piece has won, if there is a winner, Invalid if the game
  * is not over, or Blank if the board is filled and no one has won.
  **/
-Piece TicTacToeBoard::getWinner() { return Invalid; }
+Piece TicTacToeBoard::getWinner() {
+  // Check rows
+  for (int row = 0; row < BOARDSIZE; row++) {
+    // Pass
+  }
+
+  // Check columns
+  for (int col = 0; col < BOARDSIZE; col++) {
+    // pass
+  }
+
+  // Check diags
+  for (int rowcol = 0; rowcol < BOARDSIZE; rowcol++) {
+  }
+  return Invalid;
+}
